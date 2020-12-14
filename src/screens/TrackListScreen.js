@@ -1,8 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Button } from 'react-native';
 
-const TrackListScreen = () => {
-	return <Text>TrackListScreen</Text>;
+const TrackListScreen = ({ navigation }) => {
+	return (
+		<>
+			<Text>TrackListScreen</Text>
+			<Button
+				title='go to detail'
+				onPress={() => navigation.navigate('TrackDetail')}
+			/>
+		</>
+	);
 };
 
 export default TrackListScreen;
