@@ -4,15 +4,15 @@ import { Button, Text, Input } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 
-const SigninScreen = ({ navigation }) => {
-	const { signIn } = useContext(AuthContext);
+const SignupScreen = ({ navigation }) => {
+	const { signup } = useContext(AuthContext);
 
 	const [inputDetails, setInputDetails] = useState({ email: '', password: '' });
 	return (
 		<View style={styles.container}>
 			<Spacer>
 				<Text h3 style={styles.header}>
-					Sign in for Tracker
+					Sign up for Tracker
 				</Text>
 			</Spacer>
 
@@ -37,8 +37,12 @@ const SigninScreen = ({ navigation }) => {
 				secureTextEntry
 			/>
 			<Spacer>
-				<Button title='Sign in' onPress={() => signIn(inputDetails)} />
+				<Button title='Sign up' onPress={() => signup(inputDetails)} />
 			</Spacer>
+			<Button
+				title='Already have an account? Sign In'
+				onPress={() => navigation.navigate('Signin')}
+			/>
 		</View>
 	);
 };
@@ -54,8 +58,8 @@ const styles = StyleSheet.create({
 	},
 });
 
-SigninScreen.navigationOptions = () => ({
+SignupScreen.navigationOptions = () => ({
 	headerShown: false,
 });
 
-export default SigninScreen;
+export default SignupScreen;

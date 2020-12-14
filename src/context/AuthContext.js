@@ -11,22 +11,24 @@ const authReducer = (state, { type, payload }) => {
 	}
 };
 
-const signUp = (dispatch) => async (userDetails) => {
+const signup = (dispatch) => async (userDetails) => {
 	try {
-		const { data } = await tracker.post('/signin', { userDetails });
-		console.log(data);
-		//dispatch({type:'SIGN_UP', payload:token})
-	} catch (error) {}
+		const { data } = await tracker.post('/signup', { ...userDetails });
+		console.log(data.token);
+		dispatch({ type: 'SIGN_UP', payload: data.token });
+	} catch (error) {
+		console.log(error);
+	}
 };
 
-const signIn = (dispatch) => (userDetails) => {
+const signin = (dispatch) => (userDetails) => {
 	//call api and get token
 };
 
-const signOut = (dispatch) => () => {};
+const signout = (dispatch) => () => {};
 
 export const { Context, Provider } = createDataContext(
 	authReducer,
-	{ signUp, signIn, signOut },
+	{ signup, signin, signout },
 	{ isSignedIn: false }
 );
