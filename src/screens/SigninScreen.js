@@ -54,6 +54,10 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		marginBottom: 50,
 	},
+	errorMessage: {
+		fontSize: 16,
+		color: 'red',
+	},
 });
 
 SigninScreen.navigationOptions = () => ({

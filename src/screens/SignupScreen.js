@@ -5,7 +5,7 @@ import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const SignupScreen = ({ navigation }) => {
-	const { signup } = useContext(AuthContext);
+	const { signup, state } = useContext(AuthContext);
 
 	const [inputDetails, setInputDetails] = useState({ email: '', password: '' });
 	return (
@@ -36,13 +36,19 @@ const SignupScreen = ({ navigation }) => {
 				autoCorrect={false}
 				secureTextEntry
 			/>
+			{state.errorMessage ? (
+				<Text style={styles.errorMessage}>{state.errorMessage}</Text>
+			) : null}
+
 			<Spacer>
 				<Button title='Sign up' onPress={() => signup(inputDetails)} />
 			</Spacer>
-			<Button
-				title='Already have an account? Sign In'
-				onPress={() => navigation.navigate('Signin')}
-			/>
+			<Spacer>
+				<Button
+					title='Already have an account? Sign In'
+					onPress={() => navigation.navigate('Signin')}
+				/>
+			</Spacer>
 		</View>
 	);
 };
@@ -55,6 +61,11 @@ const styles = StyleSheet.create({
 	header: {
 		textAlign: 'center',
 		marginBottom: 50,
+	},
+	errorMessage: {
+		fontSize: 16,
+		color: 'red',
+		marginLeft: 10,
 	},
 });
 
