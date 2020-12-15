@@ -11,7 +11,8 @@ const authReducer = (state, { type, payload }) => {
 			return { ...state, errorMessage: payload };
 		case 'CLEAR_ERROR_MESSAGE':
 			return { ...state, errorMessage: '' };
-
+		case 'CLEAR_TOKEN':
+			return { ...state, token: null, errorMessage: '' };
 		default:
 			return state;
 	}
@@ -24,6 +25,17 @@ const tryLocalSignIn = (dispatch) => async () => {
 		navigate('mainFlow');
 	} else {
 		navigate('loginFlow');
+	}
+};
+
+const logout = (dispatch) => async () => {
+	try {
+		dispatch({ type: 'CLEAR_TOKEN' });
+		await AsyncStorage.removeItem('token');
+
+		navigate('loginFlow');
+	} catch (error) {
+		console.log('oops');
 	}
 };
 
@@ -65,6 +77,6 @@ const signout = (dispatch) => () => {};
 
 export const { Context, Provider } = createDataContext(
 	authReducer,
-	{ signup, signin, signout, clearErrorMessage, tryLocalSignIn },
+	{ signup, signin, signout, clearErrorMessage, tryLocalSignIn, logout },
 	{ token: null, errorMessage: '' }
 );
