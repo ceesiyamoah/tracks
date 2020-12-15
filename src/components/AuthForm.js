@@ -9,7 +9,7 @@ const AuthForm = ({ HeaderText, onSubmit, errorMessage }) => {
 	return (
 		<>
 			<Spacer>
-				<Text h3 style={styles.header}>
+				<Text h1 style={styles.header}>
 					{HeaderText} to Tracker
 				</Text>
 			</Spacer>
