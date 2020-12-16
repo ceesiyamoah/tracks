@@ -6,11 +6,14 @@ import Spacer from './../components/Spacer';
 import '../_mockLocation';
 import { Context as LocationContext } from '../context/LocationContext';
 import useLocation from '../hooks/useLocation';
-import { stopLocationUpdatesAsync } from 'expo-location';
+import TrackForm from './../components/TrackForm';
 
 const TrackCreateScreen = ({ isFocused }) => {
 	const { state, addLocation } = useContext(LocationContext);
-	const { err } = useLocation(isFocused, addLocation);
+
+	const { err } = useLocation(isFocused, (location) => {
+		addLocation(location, state.recording);
+	});
 	return (
 		<SafeAreaView forceInset={{ top: 'always' }}>
 			<Spacer>
@@ -18,6 +21,9 @@ const TrackCreateScreen = ({ isFocused }) => {
 			</Spacer>
 			<Map />
 			{err ? <Text h1>Please enable location</Text> : null}
+			<Spacer>
+				<TrackForm />
+			</Spacer>
 		</SafeAreaView>
 	);
 };

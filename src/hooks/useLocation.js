@@ -18,13 +18,10 @@ const useLocation = (shouldTrack, callback) => {
 					timeInterval: 1000,
 					distanceInterval: 10,
 				},
-				(location) => {
-					callback(location);
-				}
+				callback
 			);
 			setSubscriber(sub);
 		} catch (error) {
-			console.log(error);
 			setErr(error);
 		}
 	};

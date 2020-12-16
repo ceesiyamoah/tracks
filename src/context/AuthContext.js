@@ -34,9 +34,7 @@ const logout = (dispatch) => async () => {
 		await AsyncStorage.removeItem('token');
 
 		navigate('loginFlow');
-	} catch (error) {
-		console.log('oops');
-	}
+	} catch (error) {}
 };
 
 const clearErrorMessage = (dispatch) => () => {

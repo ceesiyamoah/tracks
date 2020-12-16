@@ -26,18 +26,18 @@ const Map = () => {
 				longitudeDelta: 0.01,
 			}}
 		>
+			<Circle
+				center={{
+					latitude: currentLocation.latitude,
+					longitude: currentLocation.longitude,
+				}}
+				radius={30}
+				fillColor='rgba(120,128,255,0.3)'
+				strokeColor='rgba(120,128,255,1)'
+			/>
 			{locations.length != 0 && (
-				<Circle
-					center={{
-						latitude: locations[0].latitude,
-						longitude: locations[0].longitude,
-					}}
-					radius={30}
-					fillColor='rgba(120,128,255,.3)'
-					strokeColor='rgba(120,128,255)'
-				/>
+				<Polyline coordinates={locations} strokeWidth={3} />
 			)}
-			<Polyline coordinates={locations} strokeWidth={3} />
 		</MapView>
 	);
 };
