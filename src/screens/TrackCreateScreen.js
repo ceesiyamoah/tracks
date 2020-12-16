@@ -6,7 +6,11 @@ import Spacer from './../components/Spacer';
 import {
 	requestPermissionsAsync,
 	getCurrentPositionAsync,
+	watchPositionAsync,
+	Accuracy,
+	stopLocationUpdatesAsync,
 } from 'expo-location';
+import '../_mockLocation';
 
 const TrackCreateScreen = () => {
 	const [err, setErr] = useState(null);
@@ -14,7 +18,16 @@ const TrackCreateScreen = () => {
 	const startWatching = async () => {
 		try {
 			await requestPermissionsAsync();
-			console.log('granted');
+			await watchPositionAsync(
+				{
+					accuracy: Accuracy.BestForNavigation,
+					timeInterval: 1000,
+					distanceInterval: 10,
+				},
+				(location) => {
+					console.log(location);
+				}
+			);
 		} catch (error) {
 			console.log(error);
 			setErr(error);
