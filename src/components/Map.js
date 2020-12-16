@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
-import MapView, { Polyline } from 'react-native-maps';
+import MapView, { Polyline, Circle } from 'react-native-maps';
 import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
@@ -14,18 +14,29 @@ const Map = () => {
 		<MapView
 			style={styles.map}
 			initialRegion={{
-				latitude: locations[0].latitude,
-				longitude: locations[0].longitude,
+				latitude: 5.685651951377082,
+				longitude: -0.19479612257735465,
 				latitudeDelta: 0.01,
 				longitudeDelta: 0.01,
 			}}
 			region={{
-				latitude: locations[0].latitude,
-				longitude: locations[0].longitude,
+				latitude: 5.685651951377082,
+				longitude: -0.19479612257735465,
 				latitudeDelta: 0.01,
 				longitudeDelta: 0.01,
 			}}
 		>
+			{locations.length != 0 && (
+				<Circle
+					center={{
+						latitude: locations[0].latitude,
+						longitude: locations[0].longitude,
+					}}
+					radius={30}
+					fillColor='rgba(120,128,255,.3)'
+					strokeColor='rgba(120,128,255)'
+				/>
+			)}
 			<Polyline coordinates={locations} strokeWidth={3} />
 		</MapView>
 	);
