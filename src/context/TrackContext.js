@@ -3,15 +3,20 @@ import createDataContext from './createDataContext';
 
 const trackReducer = (state, { type, payload }) => {
 	switch (type) {
-		case value:
-			break;
+		case 'GET_TRACKS':
+			return [...payload];
 
 		default:
 			return state;
 	}
 };
 
-const fetchTracks = (dispatch) => async () => {};
+const fetchTracks = (dispatch) => async () => {
+	try {
+		const { data } = await tracker.get('/tracks');
+		dispatch({ type: 'GET_TRACKS', payload: data });
+	} catch (error) {}
+};
 
 const createTrack = (dispatch) => async (name, locations) => {
 	try {
