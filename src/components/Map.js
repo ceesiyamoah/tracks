@@ -8,7 +8,6 @@ const Map = () => {
 		state: { currentLocation, locations },
 	} = useContext(LocationContext);
 	if (!currentLocation) return <ActivityIndicator size='large' />;
-	console.log('locations', locations);
 	return (
 		<MapView
 			style={styles.map}

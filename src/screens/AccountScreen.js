@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const AccountScreen = () => {
 	const { logout } = useContext(AuthContext);
@@ -16,5 +17,9 @@ const AccountScreen = () => {
 		</SafeAreaView>
 	);
 };
+
+AccountScreen.navigationOptions = () => ({
+	tabBarIcon: <MaterialCommunityIcons name='account' size={24} color='black' />,
+});
 
 export default AccountScreen;

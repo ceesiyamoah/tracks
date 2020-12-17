@@ -7,6 +7,7 @@ import '../_mockLocation';
 import { Context as LocationContext } from '../context/LocationContext';
 import useLocation from '../hooks/useLocation';
 import TrackForm from './../components/TrackForm';
+import { Ionicons } from '@expo/vector-icons';
 
 const TrackCreateScreen = ({ isFocused }) => {
 	const {
@@ -33,5 +34,11 @@ const TrackCreateScreen = ({ isFocused }) => {
 		</SafeAreaView>
 	);
 };
+
+TrackCreateScreen.navigationOptions = () => ({
+	title: 'Add Track',
+
+	tabBarIcon: <Ionicons name='add' size={28} color='black' />,
+});
 
 export default withNavigationFocus(TrackCreateScreen);

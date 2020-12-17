@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
-import {
-	ActivityIndicator,
-	FlatList,
-	StyleSheet,
-	TouchableOpacity,
-} from 'react-native';
+import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Context as TrackContext } from '../context/TrackContext';
-import { ListItem, Text } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 const TrackListScreen = ({ navigation }) => {
 	const { fetchTracks, state } = useContext(TrackContext);
 
 	const renderItem = ({ item }) => (
-		<TouchableOpacity>
+		<TouchableOpacity
+			onPress={() =>
+				navigation.navigate('TrackDetail', { id: item._id, name: item.name })
+			}
+		>
 			<ListItem chevron title={item.name} />
 		</TouchableOpacity>
 	);
@@ -33,11 +32,10 @@ const TrackListScreen = ({ navigation }) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	names: {
-		fontSize: 20,
-		margin: 10,
-		textAlign: 'center',
+TrackListScreen.navigationOptions = () => ({
+	title: 'Tracks',
+	headerTitleStyle: {
+		alignSelf: 'center',
 	},
 });
 
