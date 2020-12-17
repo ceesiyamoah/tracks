@@ -6,8 +6,7 @@ const locationReducer = (state, { type, payload }) => {
 			return {
 				...state,
 				currentLocation: {
-					latitude: payload.coords.latitude,
-					longitude: payload.coords.longitude,
+					...payload.coords,
 				},
 			};
 		case 'START_RECORDING':
@@ -20,8 +19,7 @@ const locationReducer = (state, { type, payload }) => {
 				locations: [
 					...state.locations,
 					{
-						latitude: payload.coords.latitude,
-						longitude: payload.coords.longitude,
+						...payload.coords,
 					},
 				],
 			};

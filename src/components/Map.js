@@ -7,7 +7,6 @@ const Map = () => {
 	const {
 		state: { currentLocation, locations },
 	} = useContext(LocationContext);
-	console.log(locations.length);
 	if (!currentLocation) return <ActivityIndicator size='large' />;
 
 	return (
@@ -35,9 +34,8 @@ const Map = () => {
 				fillColor='rgba(120,128,255,0.3)'
 				strokeColor='rgba(120,128,255,1)'
 			/>
-			{locations.length != 0 && (
-				<Polyline coordinates={locations} strokeWidth={3} />
-			)}
+
+			<Polyline coordinates={locations} strokeWidth={3} />
 		</MapView>
 	);
 };
